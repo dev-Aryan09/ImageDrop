@@ -57,11 +57,11 @@ html{
 
 .feed-section{
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
-  justify-content: start;
+  justify-content: center;
+  flex-wrap: wrap;
   gap:20px;
-  height: 100%;
   width: 100%;
   background-color: #f0f2f5;
   padding:20px;
