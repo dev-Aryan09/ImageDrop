@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, Bounce, Slide } from "react-toastify";
+import { Header } from "../components/Header";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -22,30 +24,54 @@ const CreatePost = () => {
       .post("https://imagedropp-backend.onrender.com/create-post", formData)
       .then((res) => {
         console.log(res);
+        toast.success("Image uploaded successfully!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
         navigate("/feed");
 
-        e.target.reset();
+        e.target.reset(); // form reset
       })
       .catch((err) => {
         console.log(err);
-        alert("Error creating post");
+        toast.error("Please upload an image!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       });
   };
 
   return (
-    <section className="create-post-section">
-      <h1>Create Post</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" name="image" accept="image/*" />
-        <input
-          type="text"
-          name="caption"
-          placeholder="Enter caption"
-          required
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </section>
+    <>
+      <Header />
+      <section className="create-post-section">
+        <h1>Create Post</h1>
+        <form onSubmit={handleSubmit}>
+          <input type="file" name="image" accept="image/*" />
+          <input
+            type="text"
+            name="caption"
+            placeholder="Enter caption"
+            required
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </>
   );
 };
 

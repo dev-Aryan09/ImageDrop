@@ -1,0 +1,22 @@
+#header-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+#drop {
+  font-family: cursive;
+  font-size: 28px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#feed-link {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
