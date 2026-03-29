@@ -7,6 +7,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import CreatePost from "./pages/CreatePost";
 import Feed from "./pages/Feed";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Navigate to="/create-post" replace />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/feed" element={<Feed />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <ToastContainer />

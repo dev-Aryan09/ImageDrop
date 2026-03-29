@@ -85,3 +85,30 @@ html{
 .post-card h3 {
   margin-bottom: 10px;
 }
+
+.notfound {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.notfound h1 {
+  font-size: 80px;
+  margin: 0;
+}
+
+.notfound h2 {
+  margin: 10px 0;
+}
+
+.notfound Link {
+  margin-top: 15px;
+  text-decoration: none;
+  color: white;
+  background: black;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
