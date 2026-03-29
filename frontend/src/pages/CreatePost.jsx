@@ -19,7 +19,7 @@ const CreatePost = () => {
     */
 
     axios
-      .post("http://localhost:3000/create-post", formData)
+      .post("https://imagedropp-backend.onrender.com/create-post", formData)
       .then((res) => {
         console.log(res);
         navigate("/feed");
