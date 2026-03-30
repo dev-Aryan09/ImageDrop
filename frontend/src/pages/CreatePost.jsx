@@ -1,10 +1,14 @@
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Bounce, Slide } from "react-toastify";
 import { Header } from "../components/Header";
+import { Loader } from "../components/Loader";
 
 const CreatePost = () => {
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     // preventDefault() stops that automatic refresh, so you can handle the submission manually with JavaScript.
@@ -19,6 +23,7 @@ const CreatePost = () => {
     console.log(formData.get("image"));
     console.log(formData.get("caption"));
     */
+    setLoading(true);
 
     axios
       .post("https://imagedropp-backend.onrender.com/create-post", formData)
@@ -52,6 +57,9 @@ const CreatePost = () => {
           theme: "light",
           transition: Bounce,
         });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -60,16 +68,20 @@ const CreatePost = () => {
       <Header />
       <section className="create-post-section">
         <h1>Create Post</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="file" name="image" accept="image/*" />
-          <input
-            type="text"
-            name="caption"
-            placeholder="Enter caption"
-            required
-          />
-          <button type="submit">Submit</button>
-        </form>
+        {loading ? (
+          <Loader text="Please wait, uploading an image..." />
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <input type="file" name="image" accept="image/*" />
+            <input
+              type="text"
+              name="caption"
+              placeholder="Enter caption"
+              required
+            />
+            <button type="submit">Submit</button>
+          </form>
+        )}
       </section>
     </>
   );

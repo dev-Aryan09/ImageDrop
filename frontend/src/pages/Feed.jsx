@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { toast, Bounce } from "react-toastify";
 import axios from "axios";
+import { FullScreenLoader } from "../components/FullScreenLoader";
 
 const Feed = () => {
   const [posts, setPosts] = useState([
@@ -11,25 +13,52 @@ const Feed = () => {
     // },
   ]);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    axios.get("https://imagedropp-backend.onrender.com/posts").then((res) => {
-      setPosts(res.data.posts);
-    });
+    setLoading(true);
+    axios
+      .get("https://imagedropp-backend.onrender.com/posts")
+      .then((res) => {
+        setPosts(res.data.posts);
+      })
+      .catch((err) => {
+        toast.error("Failed to load images!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <section className="feed-section">
-      {posts.length > 0 ? (
-        posts.map((post) => (
-          <div key={post._id} className="post-card">
-            <img src={post.image} alt={post.caption} />
-            <p>{post.caption}</p>
-          </div>
-        ))
+    <>
+      {loading ? (
+        <FullScreenLoader />
       ) : (
-        <h1>No posts available</h1>
+        <section className="feed-section">
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <div key={post._id} className="post-card">
+                <img src={post.image} alt={post.caption} />
+                <p>{post.caption}</p>
+              </div>
+            ))
+          ) : (
+            <h1>No posts available</h1>
+          )}
+        </section>
       )}
-    </section>
+    </>
   );
 };
 
