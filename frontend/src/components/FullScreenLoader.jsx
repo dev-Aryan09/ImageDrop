@@ -5,6 +5,7 @@ export const FullScreenLoader = ({ text = "Loading..." }) => {
     <div className="fullscreen-loader">
       <div className="loader-box">
         <div className="spinner-fullscreen"></div>
+        <p>{text}</p>
       </div>
     </div>
   );

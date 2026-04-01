@@ -43,7 +43,7 @@ const Feed = () => {
   return (
     <>
       {loading ? (
-        <FullScreenLoader />
+        <FullScreenLoader text={"Your images are on the way..."} />
       ) : (
         <section className="feed-section">
           {posts.length > 0 ? (

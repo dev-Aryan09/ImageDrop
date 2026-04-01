@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
 
-  backdrop-filter: blur(6px); /* 🔥 blur effect */
+  backdrop-filter: blur(6px); /* blur effect */
   background: rgba(255, 255, 255, 0.4); /* slight overlay */
 
   z-index: 9999;
